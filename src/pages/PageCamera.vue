@@ -17,6 +17,10 @@
       </q-item>
 
       <q-separator />
+      
+      <q-img
+        src="https://cdn.quasar.dev/img/parallax2.jpg"
+      />
 
     </q-card>
   </q-page>
@@ -27,3 +31,9 @@ export default {
   name: 'PageCamera'
 }
 </script>
+
+<style lang="sass">
+  .card-post
+    .q-image
+      min-height: 200px
+</style>
