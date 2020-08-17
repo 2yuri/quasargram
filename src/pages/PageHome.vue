@@ -1,6 +1,12 @@
 <template>
   <q-page class="constrain q-pa-md">
-    <q-card class="card-post" flat bordered>
+    <q-card
+      v-for="post in posts"
+      :key="post.id"
+      class="card-post q-mb-md"
+      flat
+      bordered  
+    >
       <q-item>
         <q-item-section avatar>
           <q-avatar>
@@ -11,7 +17,7 @@
         <q-item-section>
           <q-item-label class="text-bold">hyperYuri</q-item-label>
           <q-item-label caption>
-            Brazil
+            {{ post.location}}
           </q-item-label>
         </q-item-section>
       </q-item>
@@ -19,12 +25,14 @@
       <q-separator />
       
       <q-img
-        src="https://cdn.quasar.dev/img/parallax2.jpg"
+        :src="post.imageUrl"
       />
 
             <q-card-section>
-        <div >Golden gate brigde</div>
-        <div class="text-caption text-grey">june 10 9:04am</div>
+        <div>{{post.caption}}</div>
+        <div class="text-caption text-grey">
+          {{post.date | niceDate }}
+        </div>
       </q-card-section>
 
     </q-card>
@@ -32,7 +40,42 @@
 </template>
 
 <script>
+import { date } from 'quasar';
+
 export default {
-  name: 'PageHome'
+  name: 'PageHome',
+  data() {
+    return {
+      posts: [
+        {
+          id: 1,
+          caption: 'Golden Gate Bridge',
+          date: 1591776655504,
+          location: 'san francisco, united states',
+          imageUrl: 'https://cdn.quasar.dev/img/parallax2.jpg'
+        },
+        {
+          id: 2,
+          caption: 'Golden Gate Bridge',
+          date: 1591776655504,
+          location: 'san francisco, united states',
+          imageUrl: 'https://cdn.quasar.dev/img/parallax2.jpg'
+        },
+        {
+          id: 3,
+          caption: 'Golden Gate Bridge',
+          date: 1591776655504,
+          location: 'san francisco, united states',
+          imageUrl: 'https://cdn.quasar.dev/img/parallax2.jpg'
+        },
+      ]
+    }
+  },
+  filters: {
+    niceDate(value) {
+      return date.formatDate(value, 'MMMM D h:mmA')
+    }
+  }
+
 }
 </script>
